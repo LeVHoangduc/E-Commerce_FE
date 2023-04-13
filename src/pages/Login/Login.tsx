@@ -8,6 +8,7 @@ export default function Login() {
     formState: { errors }
   } = useForm()
 
+  // data is form data
   const onSubmit = handleSubmit((data) => {
     console.log(data)
   })
@@ -15,7 +16,7 @@ export default function Login() {
     <div className='bg-orange'>
       <div className='container'>
         <div className='grid grid-cols-1 p-12 lg:grid-cols-5 lg:py-32 lg:pr-10'>
-          <div className='lg:cols-span-2 lg:col-start-4'>
+          <div className='lg:col-span-2 lg:col-start-4'>
             <form className='rounded bg-white p-10 shadow-sm' onSubmit={onSubmit}>
               <div className='text-2xl'>Login</div>
               <div className='mt-8'>
