@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
-import { omit } from 'lodash'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { login } from 'src/apis/auth.api'
