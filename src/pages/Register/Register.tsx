@@ -11,6 +11,7 @@ import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 import { useContext, useState } from 'react'
 import { ErrorResponse } from 'src/types/utils.type'
 import { AppContext } from 'src/contexts/app.context'
+import Button from 'src/components/Button'
 
 // interface FormData {
 //   email: string
@@ -119,9 +120,13 @@ export default function Register() {
                 autoComplete='on'
               />
               <div className='mt-2'>
-                <button className='w-full bg-red-500 py-4 px-2 text-center text-sm uppercase text-white hover:bg-red-600'>
+                <Button
+                  isLoading={registerAccountMutation.isLoading}
+                  disabled={registerAccountMutation.isLoading}
+                  className='flex w-full items-center justify-center bg-red-500 py-4 px-2 text-sm uppercase text-white hover:bg-red-600'
+                >
                   Register
-                </button>
+                </Button>
               </div>
               <div className='flex items-center justify-center'>
                 <span className='text-slate-400'>Ban da co tai khoan ?</span>
