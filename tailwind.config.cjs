@@ -20,6 +20,7 @@ module.exports = {
           paddingLeft: theme('spacing.4')
         }
       })
-    })
+    }),
+    require('@tailwindcss/line-clamp')
   ]
 }

@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import { login } from 'src/apis/auth.api'
+import authApi from 'src/apis/auth.api'
 import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import { AppContext } from 'src/contexts/app.context'
@@ -14,7 +14,7 @@ import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 type FormData = Omit<Schema, 'confirm_password'>
 const loginSchema = schema.omit(['confirm_password']) // fix bug 1
 export default function Login() {
-  const { setIsAuthenticated } = useContext(AppContext)
+  const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
   const {
     register,
@@ -27,12 +27,15 @@ export default function Login() {
 
   // data is form data
   const loginMutation = useMutation({
-    mutationFn: (body: Omit<FormData, 'confirm_password'>) => login(body)
+    mutationFn: (body: Omit<FormData, 'confirm_password'>) => authApi.login(body)
   })
+
   const onSubmit = handleSubmit((data) => {
+    console.log(data)
     loginMutation.mutate(data, {
       onSuccess: (data) => {
         setIsAuthenticated(true)
+        setProfile(data.data.data.user)
         navigate('/')
       },
       onError: (error) => {
@@ -51,6 +54,7 @@ export default function Login() {
       }
     })
   })
+
   return (
     <div className='bg-orange'>
       <div className='container'>
@@ -58,14 +62,16 @@ export default function Login() {
           <div className='lg:col-span-2 lg:col-start-4'>
             <form className='rounded bg-white p-10 shadow-sm' onSubmit={onSubmit} noValidate>
               <div className='text-2xl'>Login</div>
-              <Input
-                name='email'
-                register={register}
-                placeholder='Email'
-                errorMessage={errors.email?.message}
-                type='email'
-                className='mt-8'
-              />
+              <div>
+                <Input
+                  name='email'
+                  register={register}
+                  placeholder='Email'
+                  errorMessage={errors.email?.message}
+                  type='email'
+                  className='mt-8'
+                />
+              </div>
 
               <Input
                 name='password'
