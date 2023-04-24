@@ -8,7 +8,7 @@ import ProductRating from 'src/components/ProductRating'
 import useQueryConfig from 'src/hooks/useQueryConfig'
 import { Product as ProductType, ProductListConfig } from 'src/types/product.type'
 import { formatCurrency, formatNumberToSocialStyle, getIdFromNameId, rateSale } from 'src/utils/utils'
-import Product from '../ProductList/Product'
+import Product from '../ProductList/components/Product'
 
 export default function ProductDetail() {
   const { nameId } = useParams()
