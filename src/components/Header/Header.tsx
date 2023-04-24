@@ -1,15 +1,30 @@
 import { useMutation } from '@tanstack/react-query'
 import Popover from '../Popover'
-import { Link } from 'react-router-dom'
+import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 
 import { useContext } from 'react'
 import { AppContext } from 'src/contexts/app.context'
 import path from 'src/constants/path'
 import authApi from 'src/apis/auth.api'
+import useQueryConfig from 'src/hooks/useQueryConfig'
+import { useForm } from 'react-hook-form'
+import { Schema, schema } from 'src/utils/rules'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { omit } from 'lodash'
+
+type FormData = Pick<Schema, 'name'>
+const nameSchema = schema.pick(['name'])
 
 export default function Header() {
+  const queryConfig = useQueryConfig()
   const { setIsAuthenticated, isAuthenticated, setProfile, profile } = useContext(AppContext)
-
+  const { register, handleSubmit } = useForm<FormData>({
+    defaultValues: {
+      name: ''
+    },
+    resolver: yupResolver(nameSchema)
+  })
+  const navigate = useNavigate()
   const logoutMutation = useMutation({
     mutationFn: authApi.logout,
     onSuccess: () => {
@@ -21,6 +36,26 @@ export default function Header() {
   const handleLogOut = () => {
     logoutMutation.mutate()
   }
+
+  const onSubmitSearch = handleSubmit((data) => {
+    const config = queryConfig.order
+      ? omit(
+          {
+            ...queryConfig,
+            name: data.name
+          },
+          ['order', 'sort_by']
+        )
+      : {
+          ...queryConfig,
+          name: data.name
+        }
+    navigate({
+      pathname: path.home,
+      search: createSearchParams(config).toString()
+    })
+  })
+
   return (
     <div className='bg-[linear-gradient(-180deg,#f53d2d,#f63)] pb-5 pt-2 text-white'>
       <div className='container'>
@@ -28,9 +63,9 @@ export default function Header() {
           <Popover
             RenderPopover={
               <div className='relative rounded-sm border border-gray-200 bg-white shadow-md'>
-                <div className='flex flex-col py-2 pr-28 pl-2'>
-                  <button className='py-2 px-3 text-left hover:text-orange'>Vietnamese</button>
-                  <button className='mt-2 py-2 px-3 text-left hover:text-orange'>English</button>
+                <div className='flex flex-col py-2 pl-2 pr-28'>
+                  <button className='px-3 py-2 text-left hover:text-orange'>Vietnamese</button>
+                  <button className='mt-2 px-3 py-2 text-left hover:text-orange'>English</button>
                 </div>
               </div>
             }
@@ -70,19 +105,19 @@ export default function Header() {
                 <div className='relative rounded-sm border border-gray-200 bg-white shadow-md'>
                   <Link
                     to={path.profile}
-                    className='block w-full bg-white py-3 px-4 text-left hover:bg-slate-100 hover:text-cyan-500'
+                    className='block w-full bg-white px-4 py-3 text-left hover:bg-slate-100 hover:text-cyan-500'
                   >
                     My Account
                   </Link>
                   <Link
                     to={path.home}
-                    className='block w-full bg-white py-3 px-4 text-left hover:bg-slate-100 hover:text-cyan-500'
+                    className='block w-full bg-white px-4 py-3 text-left hover:bg-slate-100 hover:text-cyan-500'
                   >
                     Orders
                   </Link>
                   <button
                     onClick={handleLogOut}
-                    className='block w-full bg-white py-3 px-4 text-left hover:bg-slate-100 hover:text-cyan-500'
+                    className='block w-full bg-white px-4 py-3 text-left hover:bg-slate-100 hover:text-cyan-500'
                   >
                     Log Out
                   </button>
@@ -120,15 +155,15 @@ export default function Header() {
               </g>
             </svg>
           </Link>
-          <form className='col-span-9'>
+          <form className='col-span-9' onSubmit={onSubmitSearch}>
             <div className='flex rounded-sm bg-white p-1'>
               <input
                 type='text'
-                name='search'
                 className='flex-grow border-none bg-transparent px-3 py-2 text-black outline-none'
                 placeholder='Free Ship orders from 0Đ'
+                {...register('name')}
               />
-              <button className='flex-shrink-0 rounded-sm bg-orange py-2 px-6 hover:opacity-90'>
+              <button className='flex-shrink-0 rounded-sm bg-orange px-6 py-2 hover:opacity-90'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'

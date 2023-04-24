@@ -1,5 +1,5 @@
 import { sortBy, order as orderConstant } from 'src/constants/product'
-import { QueryConfig } from '../ProductList'
+import { QueryConfig } from 'src/hooks/useQueryConfig'
 import classNames from 'classnames'
 import { ProductListConfig } from 'src/types/product.type'
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
@@ -46,7 +46,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
   }
 
   return (
-    <div className='bg-gray-300/40 py-4 px-3'>
+    <div className='bg-gray-300/40 px-3 py-4'>
       <div className='flex flex-wrap items-center justify-between gap-2'>
         <div className='flex flex-wrap items-center gap-2'>
           <div>Sắp xếp theo</div>
@@ -104,7 +104,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
           </div>
           <div className='ml-2 flex'>
             {page === 1 ? (
-              <span className='flex h-8 w-9 cursor-not-allowed items-center justify-center rounded-tl-sm rounded-bl-sm bg-white/60 shadow hover:bg-slate-100'>
+              <span className='flex h-8 w-9 cursor-not-allowed items-center justify-center rounded-bl-sm rounded-tl-sm bg-white/60 shadow hover:bg-slate-100'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -125,7 +125,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                     page: (page - 1).toString()
                   }).toString()
                 }}
-                className='flex h-8 w-9 cursor-not-allowed items-center justify-center rounded-tl-sm rounded-bl-sm bg-white shadow hover:bg-slate-100'
+                className='flex h-8 w-9 cursor-not-allowed items-center justify-center rounded-bl-sm rounded-tl-sm bg-white shadow hover:bg-slate-100'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -141,7 +141,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
             )}
 
             {page === pageSize ? (
-              <span className='flex h-8 w-9 cursor-not-allowed items-center justify-center rounded-tl-sm rounded-bl-sm bg-white/60 shadow hover:bg-slate-100'>
+              <span className='flex h-8 w-9 cursor-not-allowed items-center justify-center rounded-bl-sm rounded-tl-sm bg-white/60 shadow hover:bg-slate-100'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -162,7 +162,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
                     page: (page + 1).toString()
                   }).toString()
                 }}
-                className='flex h-8 w-9  items-center justify-center rounded-tl-sm rounded-bl-sm bg-white shadow hover:bg-slate-100'
+                className='flex h-8 w-9  items-center justify-center rounded-bl-sm rounded-tl-sm bg-white shadow hover:bg-slate-100'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'

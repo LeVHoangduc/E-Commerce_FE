@@ -108,7 +108,8 @@ export const schema = yup.object({
     //   return price_max !== '' || price_max !== ''
     // }
     test: testPriceMinMax
-  })
+  }),
+  name: yup.string().trim().required()
 })
 const loginSchema = schema.omit(['confirm_password'])
 export const priceSchema = schema.pick(['price_max', 'price_min'])
