@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import AsideFilter from './components/AsideFilter'
 import Product from './components/Product/Product'
-import SortProductList from './SortProductList'
+import SortProductList from './components/SortProductList'
 import productApi from 'src/apis/product.api'
 import Pagination from 'src/components/Pagination'
 import { ProductListConfig } from 'src/types/product.type'
