@@ -15,6 +15,7 @@ import { toast } from 'react-toastify'
 
 export default function ProductDetail() {
   const [buyCount, setBuyCount] = useState(0)
+
   const { nameId } = useParams()
   const id = getIdFromNameId(nameId as string)
 
@@ -198,7 +199,7 @@ export default function ProductDetail() {
                 </div>
               </div>
               <div className='mt-8 flex items-center'>
-                <div className='capitalize text-gray-500'>Amount</div>
+                <div className='mr-6 capitalize text-gray-500'>Amount</div>
 
                 {/* quantity number */}
                 <QuantityController

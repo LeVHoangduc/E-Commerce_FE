@@ -66,6 +66,7 @@ export default function useRouteElements() {
         }
       ]
     },
+
     {
       path: path.productDetail,
       element: (
