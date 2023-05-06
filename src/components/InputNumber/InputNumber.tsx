@@ -27,6 +27,7 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(function Inpu
       setLocalValue(value)
     }
   }
+  // console.log(errorMessage)
   return (
     <div className={className}>
       <input className={classNameInput} onChange={handleChange} value={value || localValue} {...rest} ref={ref} />
