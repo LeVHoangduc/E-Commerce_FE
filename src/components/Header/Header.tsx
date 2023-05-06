@@ -51,7 +51,7 @@ export default function Header() {
               </g>
             </svg> */}
             <div className='flex items-center justify-center border-b-blue-900 px-2 '>
-              <img src='./src//assets//images/logo.png' alt='' className='h-10 w-10 object-cover' />
+              <img src='./src/assets/images/logo.png' alt='' className='h-10 w-10 object-cover' />
               <span className='ml-2 text-xl font-bold'> Commercial</span>
             </div>
           </Link>
