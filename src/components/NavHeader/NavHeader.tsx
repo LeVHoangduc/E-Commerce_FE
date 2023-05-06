@@ -1,15 +1,18 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import Popover from '../Popover'
 import { AppContext } from 'src/contexts/app.context'
 import { Link } from 'react-router-dom'
 import path from 'src/constants/path'
-import { useMutation } from '@tanstack/react-query'
-import { queryClient } from 'src/main'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import authApi from 'src/apis/auth.api'
 import { purchasesStatus } from 'src/constants/purchase'
 
+import { getAvatarUrl } from 'src/utils/utils'
+
 export default function NavHeader() {
   const { setIsAuthenticated, isAuthenticated, setProfile, profile } = useContext(AppContext)
+
+  const queryClient = useQueryClient()
 
   const logoutMutation = useMutation({
     mutationFn: authApi.logout,
@@ -89,11 +92,7 @@ export default function NavHeader() {
           }
         >
           <div className='mr-2 h-6 w-6 flex-shrink-0'>
-            <img
-              src='https://scontent.fdad3-1.fna.fbcdn.net/v/t39.30808-6/316810904_1452045461986944_6926401528357697667_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=-SoyB4f7TUgAX9YSHc1&_nc_ht=scontent.fdad3-1.fna&oh=00_AfBK2heVJNDYUgvZ5YC7XdfeFQo5f3IZpe6uEFxpoa5Wow&oe=643E1184'
-              alt='avatar'
-              className='h-full w-full rounded-full object-cover'
-            />
+            <img src={getAvatarUrl(profile?.avatar)} alt='avatar' className='h-full w-full rounded-full object-cover' />
           </div>
           <div>{profile?.email}</div>
         </Popover>
