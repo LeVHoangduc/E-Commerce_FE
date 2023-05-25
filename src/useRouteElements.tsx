@@ -16,6 +16,8 @@ import ChangePassword from './pages/User/Pages/ChangePassword'
 import Profile from './pages/User/Pages/Profile'
 import HistoryPurchase from './pages/User/Pages/HistoryPurchase'
 
+import Introduction from './pages/Introduction'
+
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
   return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
@@ -27,12 +29,21 @@ function RejectedRoute() {
 
 export default function useRouteElements() {
   const routeElements = useRoutes([
+    // {
+    //   path: '/',
+    //   index: true,
+    //   element: (
+    //     <MainLayout>
+    //       <ProductList />
+    //     </MainLayout>
+    //   )
+    // },
     {
       path: '/',
       index: true,
       element: (
         <MainLayout>
-          <ProductList />
+          <Introduction />
         </MainLayout>
       )
     },
@@ -102,6 +113,10 @@ export default function useRouteElements() {
           <ProductDetail />
         </MainLayout>
       )
+    },
+    {
+      path: '/test',
+      element: <ProductList />
     }
   ])
   return routeElements

@@ -39,7 +39,7 @@ export default function Header() {
   }, [])
 
   return (
-    <div className='bg-[linear-gradient(-180deg,#f53d2d,#f63)] pb-5 pt-2 text-white'>
+    <div className=' t-0 fixed z-50 mb-20 w-full bg-slate-500 pb-8 pt-1 text-white shadow-slate-800'>
       <div className='container'>
         <NavHeader />
 
@@ -63,7 +63,7 @@ export default function Header() {
                 placeholder='Free Ship orders from 0Đ'
                 {...register('name')}
               />
-              <button className='flex-shrink-0 rounded-sm bg-orange px-6 py-2 hover:opacity-90'>
+              <button className='flex-shrink-0 rounded-sm bg-slate-500 px-6 py-2 hover:opacity-90'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -147,7 +147,7 @@ export default function Header() {
                   />
                 </svg>
                 {purchasesInCart && purchasesInCart.length > 0 && (
-                  <span className='absolute top-[-5px] left-4 rounded-full bg-white px-[9px] py-[1px] text-xs text-orange'>
+                  <span className='absolute left-4 top-[-5px] rounded-full bg-white px-[9px] py-[1px] text-xs text-orange'>
                     {purchasesInCart?.length}
                   </span>
                 )}

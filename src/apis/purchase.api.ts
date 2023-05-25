@@ -1,6 +1,6 @@
 import { Purchase, PurchaseListStatus } from 'src/types/purchase.type'
 import { SuccessResponse } from 'src/types/utils.type'
-import http from 'src/utils/http'
+import { http, b_http } from 'src/utils/http'
 
 const URL = 'purchases'
 const purchaseApi = {

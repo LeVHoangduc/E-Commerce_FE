@@ -27,6 +27,12 @@ export interface ProductList {
   }
 }
 
+// b_api
+export interface BproductList {
+  products: Product[]
+}
+//
+
 export interface ProductListConfig {
   page?: number | string
   limit?: number | string
@@ -39,3 +45,19 @@ export interface ProductListConfig {
   name?: string
   category?: string
 }
+
+// export interface ProductsConfig {
+//   _id: string
+//   image: string
+//   price: number
+//   rating: number
+//   price_before_discount: number
+//   quantity: number
+//   sold: number
+//   view: number
+//   name: string
+//   description: string
+//   category: string
+//   createdAt: string
+//   updatedAt: string
+// }

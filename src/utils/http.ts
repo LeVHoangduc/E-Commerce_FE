@@ -60,6 +60,18 @@ class Http {
   }
 }
 
-const http = new Http().instance
+class HTTP {
+  instance: AxiosInstance
+  constructor() {
+    this.instance = axios.create({
+      baseURL: config.bunURL,
+      timeout: 10000,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+}
 
-export default http
+export const http = new Http().instance
+export const b_http = new HTTP().instance
