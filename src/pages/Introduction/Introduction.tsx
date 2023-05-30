@@ -53,7 +53,7 @@ export default function Introduction() {
   }
 
   return (
-    <div className='block bg-gray-200 pt-[129px]'>
+    <div className='block bg-gray-200 pt-[81px]'>
       <Promotion />
       {productsData && (
         <div className='mb-4 '>
