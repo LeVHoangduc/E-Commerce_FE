@@ -5,6 +5,41 @@ import './images/Plogo.png'
 export default function Footer() {
   return (
     <footer className='bg-slate-400'>
+      {/*  schema for check email */}
+      <div className='m-auto w-full bg-[#F2F2F2] py-[50px]'>
+        <div className='text-center text-2xl font-semibold leading-9 text-black'>Đăng ký nhận tin từ Shop</div>
+        <p className='py-2 text-center text-sm font-normal leading-6 text-gray-500'>
+          Thông tin sản phẩm mới nhất và chương trình khuyến mãi
+        </p>
+        <div className='flex w-full flex-col items-center justify-center p-[20px]'>
+          <div className='w-full'>
+            <div className='inline-flex w-full items-center justify-center'>
+              <input
+                id='newsletter-email'
+                className='h-[40px] w-[500px] rounded-3xl py-3 pl-[20px] pr-[55px] leading-5 text-gray-500 outline-none'
+                placeholder='Email của bạn'
+                aria-label='Đăng ký nhận bản tin của chúng tôi'
+                type='email'
+                name='NewsletterEmail'
+              />{' '}
+              <button
+                type='button'
+                id='newsletter-subscribe-button'
+                className='z-10 ml-[-52px] h-[40px] w-[95px] overflow-hidden rounded-[40px] bg-blue-500 text-sm'
+              >
+                Đăng ký
+              </button>
+            </div>
+            <div className='newsletter-validation'>
+              <span id='subscribe-loading-progress' style={{ display: 'none' }} className='please-wait'>
+                Chờ đợi...
+              </span>{' '}
+              <span className='field-validation-valid' data-valmsg-for='NewsletterEmail' data-valmsg-replace='true' />
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* end  schema for check email */}
       <div className='m-auto max-w-[1200px]'>
         <div className='grid grid-cols-12 pb-5 pt-10'>
           <div className='col-span-3'>
