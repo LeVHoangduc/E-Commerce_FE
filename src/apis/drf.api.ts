@@ -1,4 +1,4 @@
-import { promotionType } from 'src/types/drf.type'
+import { advertisementType, promotionType } from 'src/types/drf.type'
 import { ProductList } from 'src/types/product.type'
 import { SuccessResponse } from 'src/types/utils.type'
 
@@ -10,5 +10,8 @@ export const drfApi = {
   },
   getProducts() {
     return b_http.get<SuccessResponse<ProductList>>('productList')
+  },
+  getAdvertisement() {
+    return b_http.get<advertisementType>('advertisement')
   }
 }

@@ -29,7 +29,7 @@ export default function ProductList() {
       return categoryApi.getCategories()
     }
   })
-
+  // console.log(productsData?.data.data.products[0]._id)
   return (
     <div className='bg-gray-200 py-6'>
       <div className='container'>

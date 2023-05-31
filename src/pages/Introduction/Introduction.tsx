@@ -8,6 +8,7 @@ import { drfApi } from 'src/apis/drf.api'
 import ProductCategoryRow from './components'
 import { Product } from 'src/types/product.type'
 import { ReactNode } from 'react'
+import Advertisement from 'src/components/Advertisement'
 
 type currentCategory = string | null
 type handleViewType = (ProductList: Product[], category: string) => ReactNode
@@ -51,10 +52,11 @@ export default function Introduction() {
     notCategory.push(category)
     return rows
   }
-
+  console.log(productsData?.data.data.products[0]._id)
   return (
     <div className='block bg-gray-200 pt-[81px]'>
       <Promotion />
+      <Advertisement />
       {productsData && (
         <div className='mb-4 '>
           {productsData.data.data.products.map((product) => {
