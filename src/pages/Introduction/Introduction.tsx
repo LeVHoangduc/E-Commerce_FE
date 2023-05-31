@@ -54,7 +54,7 @@ export default function Introduction() {
   }
   console.log(productsData?.data.data.products[0]._id)
   return (
-    <div className='block bg-gray-200 pt-[129px]'>
+    <div className='block bg-gray-200 pt-[81px]'>
       <Promotion />
       <Advertisement />
       {productsData && (
